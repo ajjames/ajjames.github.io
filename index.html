@@ -1,1 +1,867 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew James - Senior iOS Developer & Technical Lead</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #86868b;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-content .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+            color: #86868b;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f5f5f7;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #007aff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #007aff, #5ac8fa);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #007aff;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 2rem;
+            z-index: 2;
+            box-shadow: 0 0 0 3px #007aff;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -40px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: #007aff;
+            top: 42px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -20px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -20px;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.2);
+        }
+
+        .timeline-item:hover::before {
+            background: #5ac8fa;
+            box-shadow: 0 0 0 3px #5ac8fa, 0 0 20px rgba(90, 200, 250, 0.4);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .job-company {
+            font-size: 1.1rem;
+            color: #007aff;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-period {
+            color: #86868b;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .job-description {
+            color: #515154;
+            line-height: 1.6;
+        }
+
+        .job-achievements {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .job-achievements li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .job-achievements li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #007aff;
+            font-weight: bold;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: #f5f5f7;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-description {
+            color: #515154;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-link {
+            display: inline-block;
+            color: #007aff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            color: #0056b3;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #f5f5f7;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #515154;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #1d1d1f;
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item a {
+            color: #007aff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #0056b3;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .job-period {
+                text-align: left;
+            }
+
+            /* Timeline mobile adjustments */
+            .experience-timeline::before {
+                left: 20px;
+                transform: none;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 3rem;
+            }
+
+            .timeline-item::before {
+                left: 10px !important;
+                right: auto !important;
+            }
+
+            .timeline-item::after {
+                left: 30px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Andrew James</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Andrew James</h1>
+            <p class="subtitle">Senior iOS Developer & Technical Lead</p>
+            <p class="description">25 years of delivering innovative, high-end mobile applications with expert leadership, architecture expertise, and remote collaboration excellence since 2015.</p>
+            <a href="#contact" class="cta-button">Let's Connect</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Expert iOS Engineer with a proven track record of delivering innovative mobile solutions and leading high-performing development teams. I specialize in architecting scalable iOS applications, implementing CI/CD pipelines, and mentoring developers to achieve excellence.</p>
+                    <br>
+                    <p>My experience spans from fast-paced startups to enterprise-level organizations, with a focus on remote collaboration since 2015. I'm passionate about leveraging cutting-edge iOS technologies including SwiftUI, SwiftData, and Swift Concurrency to create exceptional user experiences.</p>
+                    <br>
+                    <p><strong>Available for:</strong> Full-time, Contract, and Consulting opportunities with remote-first companies, startups, and enterprises.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">25</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Years Remote</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">#49</div>
+                        <div class="stat-label">App Store Ranking</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Featured</div>
+                        <div class="stat-label">App Store Apps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Leading mobile development teams and delivering exceptional iOS applications across diverse industries</p>
+            
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-company">Enigma Labs</div>
+                            <div class="job-title">Lead iOS Developer</div>
+                        </div>
+                        <div class="job-period">Aug 2022 - Feb 2025</div>
+                    </div>
+                    <div class="job-description">
+                        Startup dedicated to solving the UAP phenomenon with a focus on scientific data collection and community engagement.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Spearheaded mobile engineering team achieving #49 ranking in 'top 100 news apps' on Apple's App Store</li>
+                        <li>Collaborated with executive stakeholders, designers, PMs, and cross-functional teams to deliver MVP</li>
+                        <li>Implemented comprehensive CI/CD pipelines and issue tracking, dramatically reducing production issues</li>
+                        <li>Mentored junior developers, improving code maintainability and reducing turnaround time for changes</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-company">American Homes 4 Rent</div>
+                            <div class="job-title">Senior iOS Developer</div>
+                        </div>
+                        <div class="job-period">Sep 2018 - Aug 2022</div>
+                    </div>
+                    <div class="job-description">
+                        Real estate company managing individual & community rental properties nationwide.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Designed and developed internal enterprise iPad app for property management teams</li>
+                        <li>Increased day-to-day efficiency for onsite property managers by 30% through system integrations</li>
+                        <li>Implemented comprehensive issue tracking and update cadence, improving app quality</li>
+                        <li>Collaborated with CTO to overhaul outdated IT systems with event-driven microservices</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-company">Trov</div>
+                            <div class="job-title">Senior iOS Developer</div>
+                        </div>
+                        <div class="job-period">Mar 2015 - Jul 2018</div>
+                    </div>
+                    <div class="job-description">
+                        Fintech startup disrupting the insurance industry with on-demand item-specific insurance.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Spearheaded complete migration from Objective-C to Swift with modern architecture patterns</li>
+                        <li>Improved turnaround time for essential new features through architectural improvements</li>
+                        <li>Launched MVP for on-demand insurance product in Australia & UK markets</li>
+                        <li>Collaborated with cross-functional teams to deliver innovative fintech solution</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-company">Getty Images</div>
+                            <div class="job-title">Lead iOS Developer</div>
+                        </div>
+                        <div class="job-period">Oct 2009 - Mar 2015</div>
+                    </div>
+                    <div class="job-description">
+                        Global leader in visual content creation and licensing.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Led development of multiple App Store Featured iOS applications</li>
+                        <li>Delivered Getty Images Stream, Getty Images, iStock, and ThinkStock mobile apps</li>
+                        <li>Implemented scalable dependency resolution and continuous delivery solutions</li>
+                        <li>Trained entire engineering organization on Git, enabling source control system migration</li>
+                        <li>Managed both in-house and outsourced development teams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <p class="section-subtitle">Showcase of impactful iOS applications and technical achievements</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">📱</div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Enigma UAP Sightings</h3>
+                        <p class="portfolio-description">Leading mobile app for UAP phenomenon research and community engagement. Achieved #49 ranking in Apple's top 100 news apps through exceptional user experience and scientific approach to data collection.</p>
+                        <a href="https://apps.apple.com/us/app/enigma-ufo-sightings-alerts/id1548371173" class="portfolio-link" target="_blank">View on App Store →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🏠</div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">AMH Property Management</h3>
+                        <p class="portfolio-description">Enterprise iPad application for property managers overseeing rental communities. Integrated with centralized microservices architecture, improving operational efficiency by 30%.</p>
+                        <a href="#" class="portfolio-link">Enterprise Solution</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🛡️</div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Trov On-Demand Insurance</h3>
+                        <p class="portfolio-description">Revolutionary fintech application enabling item-specific insurance coverage. Successfully launched in Australia and UK markets with modern Swift architecture and seamless user experience.</p>
+                        <a href="#" class="portfolio-link">Fintech Innovation</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">📸</div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Getty Images Mobile Suite</h3>
+                        <p class="portfolio-description">Multiple App Store Featured applications including Getty Images Stream, Getty Images, iStock, and ThinkStock. Delivered comprehensive visual content discovery and licensing platform.</p>
+                        <a href="#" class="portfolio-link">App Store Featured</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Core Expertise</h2>
+            <p class="section-subtitle">Comprehensive technical skills and leadership capabilities for modern iOS development</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>iOS Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">Objective-C</span>
+                        <span class="skill-tag">SwiftUI</span>
+                        <span class="skill-tag">SwiftData</span>
+                        <span class="skill-tag">Swift Concurrency</span>
+                        <span class="skill-tag">UIKit</span>
+                        <span class="skill-tag">Xcode</span>
+                        <span class="skill-tag">Unit Testing</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Architecture & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Build Management</span>
+                        <span class="skill-tag">Package Management</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Test Automation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Leadership</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Mentoring</span>
+                        <span class="skill-tag">Code Review</span>
+                        <span class="skill-tag">Cross-Functional Collaboration</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Technical Strategy</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Backend & Integration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Ruby</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Education & Training</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Curriculum Development</span>
+                        <span class="skill-tag">iOS Instruction</span>
+                        <span class="skill-tag">C# Programming</span>
+                        <span class="skill-tag">Software Testing</span>
+                        <span class="skill-tag">Technical Writing</span>
+                        <span class="skill-tag">Knowledge Transfer</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Emerging Tech</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AI Integration</span>
+                        <span class="skill-tag">Generative AI Tools</span>
+                        <span class="skill-tag">Agentic AI</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Data Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Ready to discuss your next iOS project or technical leadership opportunity</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:ajjames@msn.com">ajjames@msn.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/andrewjames71" target="_blank">Connect on LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <span>Sammamish, WA (Remote Available)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
