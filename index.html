@@ -213,6 +213,14 @@
             z-index: 1;
         }
 
+        .job-duration {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.75rem;
+            color: #86868b;
+            font-weight: 500;
+        }
+
         .timeline-item {
             position: relative;
             margin-bottom: 4rem;
@@ -284,9 +292,7 @@
         }
 
         .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            position: relative;
             margin-bottom: 1rem;
         }
 
@@ -294,18 +300,35 @@
             font-size: 1.3rem;
             font-weight: 600;
             color: #1d1d1f;
+            margin-bottom: 0.5rem;
         }
 
         .job-company {
             font-size: 1.1rem;
             color: #007aff;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .job-period {
-            color: #86868b;
-            font-size: 0.9rem;
-            text-align: right;
+            position: absolute;
+            top: 2rem;
+            background: linear-gradient(135deg, #007aff, #5ac8fa);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        .timeline-item:nth-child(odd) .job-period {
+            left: calc(100% + 60px);
+        }
+
+        .timeline-item:nth-child(even) .job-period {
+            right: calc(100% + 60px);
         }
 
         .job-description {
@@ -330,6 +353,88 @@
             left: 0;
             color: #007aff;
             font-weight: bold;
+        }
+
+        /* Teaching Section */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .teaching-overview h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+
+        .teaching-overview p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #515154;
+        }
+
+        .teaching-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .courses-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .course-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .course-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .course-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #007aff;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-item p {
+            font-size: 0.9rem;
+            color: #515154;
+            line-height: 1.5;
+        }
+
+        .curriculum-list, .committee-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .curriculum-item, .committee-item {
+            background: #f5f5f7;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: #1d1d1f;
+            border-left: 4px solid #007aff;
         }
 
         /* Portfolio Section */
@@ -496,6 +601,24 @@
                 grid-template-columns: 1fr;
             }
 
+            .teaching-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .teaching-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .curriculum-list, .committee-list {
+                grid-template-columns: 1fr;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -506,12 +629,15 @@
             }
 
             .job-header {
-                flex-direction: column;
-                gap: 0.5rem;
+                text-align: left;
             }
 
             .job-period {
-                text-align: left;
+                position: static !important;
+                left: auto !important;
+                right: auto !important;
+                margin-bottom: 1rem;
+                display: inline-block;
             }
 
             /* Timeline mobile adjustments */
@@ -536,6 +662,8 @@
                 left: 30px !important;
                 right: auto !important;
             }
+
+
         }
     </style>
 </head>
@@ -547,6 +675,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#teaching">Teaching</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -559,7 +688,7 @@
         <div class="hero-content">
             <h1>Andrew James</h1>
             <p class="subtitle">Senior iOS Developer & Technical Lead</p>
-            <p class="description">25 years of delivering innovative, high-end mobile applications with expert leadership, architecture expertise, and remote collaboration excellence since 2015.</p>
+            <p class="description">28 years of delivering innovative mobile applications with expert leadership, architecture expertise, education, and remote collaboration excellence since 2015.</p>
             <a href="#contact" class="cta-button">Let's Connect</a>
         </div>
     </section>
@@ -570,20 +699,22 @@
             <h2 class="section-title">About</h2>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>Expert iOS Engineer with a proven track record of delivering innovative mobile solutions and leading high-performing development teams. I specialize in architecting scalable iOS applications, implementing CI/CD pipelines, and mentoring developers to achieve excellence.</p>
+                    <p>Expert iOS Engineer with 28 years of proven experience delivering innovative mobile solutions and leading high-performing development teams. I specialize in architecting scalable iOS applications, implementing CI/CD pipelines, and mentoring developers to achieve excellence.</p>
                     <br>
-                    <p>My experience spans from fast-paced startups to enterprise-level organizations, with a focus on remote collaboration since 2015. I'm passionate about leveraging cutting-edge iOS technologies including SwiftUI, SwiftData, and Swift Concurrency to create exceptional user experiences.</p>
+                    <p>My experience spans from fast-paced startups to enterprise-level organizations, with a focus on remote collaboration since 2015. As an accomplished educator, I've designed and taught comprehensive technology curricula at Bellevue College, demonstrating deep technical expertise through both hands-on development and knowledge transfer.</p>
+                    <br>
+                    <p>I'm passionate about leveraging cutting-edge iOS technologies including SwiftUI, SwiftData, and Swift Concurrency to create exceptional user experiences while building and mentoring world-class development teams.</p>
                     <br>
                     <p><strong>Available for:</strong> Full-time, Contract, and Consulting opportunities with remote-first companies, startups, and enterprises.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <div class="stat-number">25</div>
+                        <div class="stat-number">28</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">9</div>
-                        <div class="stat-label">Years Remote</div>
+                        <div class="stat-label">Courses Taught</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">#49</div>
@@ -602,16 +733,30 @@
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Experience</h2>
-            <p class="section-subtitle">Leading mobile development teams and delivering exceptional iOS applications across diverse industries</p>
+            <p class="section-subtitle">28 years of comprehensive technology leadership, from iOS development to enterprise solutions across diverse industries</p>
             
             <div class="experience-timeline">
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-company">Enigma Labs</div>
-                            <div class="job-title">Lead iOS Developer</div>
-                        </div>
-                        <div class="job-period">Aug 2022 - Feb 2025</div>
+                        <div class="job-company">Fandemic</div>
+                        <div class="job-title">Head of Mobile</div>
+                        <div class="job-period">Nov 2024 - Apr 2025 <span class="job-duration">(6 months)</span></div>
+                    </div>
+                    <div class="job-description">
+                        Fast-paced startup developing the first dedicated social media platform for sports fans.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Collaborated with CEO & CTO on vision and design for social chat application</li>
+                        <li>Delivered 95% of MVP features using modern iOS development practices</li>
+                        <li>Established CI/CD pipelines and release cadence for continuous delivery</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div class="job-company">Enigma Labs</div>
+                        <div class="job-title">Lead iOS Developer</div>
+                        <div class="job-period">Aug 2022 - Feb 2025 <span class="job-duration">(2.5 years)</span></div>
                     </div>
                     <div class="job-description">
                         Startup dedicated to solving the UAP phenomenon with a focus on scientific data collection and community engagement.
@@ -626,11 +771,9 @@
 
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-company">American Homes 4 Rent</div>
-                            <div class="job-title">Senior iOS Developer</div>
-                        </div>
-                        <div class="job-period">Sep 2018 - Aug 2022</div>
+                        <div class="job-company">American Homes 4 Rent</div>
+                        <div class="job-title">Senior iOS Developer</div>
+                        <div class="job-period">Sep 2018 - Aug 2022 <span class="job-duration">(4 years)</span></div>
                     </div>
                     <div class="job-description">
                         Real estate company managing individual & community rental properties nationwide.
@@ -645,11 +788,9 @@
 
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-company">Trov</div>
-                            <div class="job-title">Senior iOS Developer</div>
-                        </div>
-                        <div class="job-period">Mar 2015 - Jul 2018</div>
+                        <div class="job-company">Trov</div>
+                        <div class="job-title">Senior iOS Developer</div>
+                        <div class="job-period">Mar 2015 - Jul 2018 <span class="job-duration">(3.3 years)</span></div>
                     </div>
                     <div class="job-description">
                         Fintech startup disrupting the insurance industry with on-demand item-specific insurance.
@@ -664,11 +805,26 @@
 
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-company">Getty Images</div>
-                            <div class="job-title">Lead iOS Developer</div>
-                        </div>
-                        <div class="job-period">Oct 2009 - Mar 2015</div>
+                        <div class="job-company">Bellevue College</div>
+                        <div class="job-title">Course Designer & Instructor</div>
+                        <div class="job-period">Mar 2012 - Apr 2016 <span class="job-duration">(4 years)</span></div>
+                    </div>
+                    <div class="job-description">
+                        Third-largest institution of higher education in Washington state - continuing education programs.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Taught 9 technology courses including iOS Development 1 & 2, C# Programming 1/2/3, and comprehensive testing programs</li>
+                        <li>Authored 5 complete curricula: iOS Development, C# Automation, Software Testing Capstone, and C# Programming</li>
+                        <li>Led SME committees for Mobile Development, C# Development, and Software Testing</li>
+                        <li>Delivered evening and weekend courses to continuing education students across multiple technology disciplines</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div class="job-company">Getty Images</div>
+                        <div class="job-title">Lead iOS Developer</div>
+                        <div class="job-period">Oct 2009 - Mar 2015 <span class="job-duration">(5.4 years)</span></div>
                     </div>
                     <div class="job-description">
                         Global leader in visual content creation and licensing.
@@ -680,6 +836,125 @@
                         <li>Trained entire engineering organization on Git, enabling source control system migration</li>
                         <li>Managed both in-house and outsourced development teams</li>
                     </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div class="job-company">Excell Data</div>
+                        <div class="job-title">SDET</div>
+                        <div class="job-period">Oct 2007 - Jun 2009 <span class="job-duration">(1.7 years)</span></div>
+                    </div>
+                    <div class="job-description">
+                        Contract work for Microsoft's MSN Direct business.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Implemented comprehensive automation solution for MSN Direct portal</li>
+                        <li>Developed testing framework for Garmin GPS devices integrated with MSN Direct</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div class="job-company">Microsoft Corporation</div>
+                        <div class="job-title">Lead SDET</div>
+                        <div class="job-period">Jun 1999 - Sep 2007 <span class="job-duration">(8.3 years)</span></div>
+                    </div>
+                    <div class="job-description">
+                        Global technology leader - MSN Internet Access products division.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Managed team of four testers for MSN Internet Access products and signup website</li>
+                        <li>Implemented comprehensive API testing web application and automation solutions</li>
+                        <li>Awarded 2 Gold Star bonuses for exceptional performance and innovation</li>
+                        <li>Delivered quality improvements through Virtual Server, PowerShell, and depot-based testing</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div class="job-company">Gateway Computers</div>
+                        <div class="job-title">Instructional Design Specialist</div>
+                        <div class="job-period">Jan 1997 - Jun 1999 <span class="job-duration">(2.4 years)</span></div>
+                    </div>
+                    <div class="job-description">
+                        Leading computer manufacturer and technology company.
+                    </div>
+                    <ul class="job-achievements">
+                        <li>Designed training and documentation for Gateway's technical support teams</li>
+                        <li>Improved searchability and accessibility of technical resources</li>
+                        <li>Provided exceptional technical support for corporate customers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section id="teaching">
+        <div class="container">
+            <h2 class="section-title">Teaching & Education Leadership</h2>
+            <p class="section-subtitle">4 years of curriculum development and instruction at Washington state's third-largest educational institution</p>
+            
+            <div class="teaching-grid">
+                <div class="teaching-overview">
+                    <h3>Educational Impact</h3>
+                    <p>As Course Designer & Instructor at Bellevue College, Andrew developed and delivered comprehensive technology education programs for continuing education students. His expertise spans curriculum creation, evening/weekend instruction, and subject matter expert committee leadership.</p>
+                    
+                    <div class="teaching-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">9</div>
+                            <div class="stat-label">Courses Taught</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Curricula Authored</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">SME Committees</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="courses-section">
+                    <h3>Courses Taught</h3>
+                    <div class="course-grid">
+                        <div class="course-item">
+                            <h4>iOS Development</h4>
+                            <p>iOS Development 1 & 2 - Complete mobile app development curriculum</p>
+                        </div>
+                        <div class="course-item">
+                            <h4>C# Programming</h4>
+                            <p>C# Programming 1, 2, & 3 - Comprehensive programming foundation</p>
+                        </div>
+                        <div class="course-item">
+                            <h4>Test Automation</h4>
+                            <p>C# Automation 1 & 2 - Advanced testing frameworks and practices</p>
+                        </div>
+                        <div class="course-item">
+                            <h4>Software Testing</h4>
+                            <p>Introduction to Software Testing & Testing Capstone - Quality assurance methodology</p>
+                        </div>
+                        <div class="course-item">
+                            <h4>Database & Fundamentals</h4>
+                            <p>SQL for Testers & Programming Basics - Core technical skills</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Curriculum Development</h3>
+                    <div class="curriculum-list">
+                        <div class="curriculum-item">✓ iOS Development 1 & 2 - Mobile app development curriculum</div>
+                        <div class="curriculum-item">✓ C# Automation 1 & 2 - Test automation framework design</div>
+                        <div class="curriculum-item">✓ Software Testing Capstone - Comprehensive testing methodology</div>
+                        <div class="curriculum-item">✓ C# Programming - Object-oriented programming foundations</div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Committee Leadership</h3>
+                    <div class="committee-list">
+                        <div class="committee-item">📱 Mobile Development SME Committee</div>
+                        <div class="committee-item">💻 C# Development SME Committee</div>
+                        <div class="committee-item">🧪 Software Testing SME Committee</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -727,6 +1002,15 @@
                         <a href="#" class="portfolio-link">App Store Featured</a>
                     </div>
                 </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">📚</div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Technology Education Programs</h3>
+                        <p class="portfolio-description">Designed and delivered 9 comprehensive technology courses at Bellevue College. Authored 5 complete curricula spanning iOS development, C# programming, and software testing methodologies.</p>
+                        <a href="#teaching" class="portfolio-link">View Teaching Experience →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -749,6 +1033,9 @@
                         <span class="skill-tag">UIKit</span>
                         <span class="skill-tag">Xcode</span>
                         <span class="skill-tag">Unit Testing</span>
+                        <span class="skill-tag">GPS/Location Services</span>
+                        <span class="skill-tag">Social Media Features</span>
+                        <span class="skill-tag">Real-time Data</span>
                     </div>
                 </div>
 
@@ -763,6 +1050,10 @@
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">Kubernetes</span>
                         <span class="skill-tag">Test Automation</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">Virtualization</span>
+                        <span class="skill-tag">Event-driven Architecture</span>
+                        <span class="skill-tag">System Integration</span>
                     </div>
                 </div>
 
@@ -770,12 +1061,15 @@
                     <h3>Leadership</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Hiring</span>
                         <span class="skill-tag">Mentoring</span>
                         <span class="skill-tag">Code Review</span>
                         <span class="skill-tag">Cross-Functional Collaboration</span>
+                        <span class="skill-tag">Cross-platform Collaboration</span>
                         <span class="skill-tag">Agile/Scrum</span>
                         <span class="skill-tag">Project Management</span>
                         <span class="skill-tag">Technical Strategy</span>
+                        <span class="skill-tag">Customer Support</span>
                     </div>
                 </div>
 
@@ -802,6 +1096,9 @@
                         <span class="skill-tag">Software Testing</span>
                         <span class="skill-tag">Technical Writing</span>
                         <span class="skill-tag">Knowledge Transfer</span>
+                        <span class="skill-tag">Adult Education</span>
+                        <span class="skill-tag">SME Committees</span>
+                        <span class="skill-tag">Evening/Weekend Courses</span>
                     </div>
                 </div>
 
